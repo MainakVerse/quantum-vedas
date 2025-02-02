@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+.countdownContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+@keyframes borderColor {
+  0% { border-color: #00f; box-shadow: 0 0 10px #00f; }
+  25% { border-color: #0f0; box-shadow: 0 0 10px #0f0; }
+  50% { border-color: #ff0; box-shadow: 0 0 10px #ff0; }
+  75% { border-color: #f00; box-shadow: 0 0 10px #f00; }
+  100% { border-color: #00f; box-shadow: 0 0 10px #00f; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #00f;
+  animation: borderColor 4s infinite linear;
+  transition: all 0.3s ease;
+}
+
+/* Desktop - 1440px */
+@media screen and (min-width: 1024px) {
+  .card {
+    width: 200px; /* 4 cards per row with gap */
+    min-height: 220px;
+  }
+  
+  .number {
+    font-size: 2.5rem;
+  }
+  
+  .label {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet - 768px */
+@media screen and (min-width: 321px) and (max-width: 1023px) {
+  .countdownContainer {
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .card {
+    width: calc(50% - 15px); /* 2 cards per row with gap */
+    min-height: 200px;
+  }
+  
+  .number {
+    font-size: 2.2rem;
+  }
+  
+  .label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile - 320px */
+@media screen and (max-width: 320px) {
+  .countdownContainer {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .card {
+    width: 100%; /* 1 card per row */
+    min-height: 180px;
+  }
+  
+  .number {
+    font-size: 2rem;
+  }
+  
+  .label {
+    font-size: 0.8rem;
+  }
+}
+
+.number {
+  font-weight: bold;
+  animation: count 1s ease-in-out;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@keyframes count {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.label {
+  color: #ccc;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation-duration: 6s;
+  }
+  
+  .number {
+    animation: none;
+  }
+}
